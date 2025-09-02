@@ -1,8 +1,13 @@
 pipeline {
     agent {
-        docker { image 'maven:3.9.1' }
+        docker { image 'docker:latest' }
     }
     stages {
+        stage('Run Docker') {
+            steps {
+                bat 'docker pull maven:3.9.1'
+            }
+        }
         stage('Source') {
             steps {
                 sh 'mvn --version'
